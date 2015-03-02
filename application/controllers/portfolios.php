@@ -146,6 +146,16 @@ class Portfolios extends CI_Controller {
 		$data['app_types'] = $this->Application_type->get_app_types();
 		return $data;
 	}
+
+	function ajaxlist(){
+		if($_POST)
+		{
+			 $app_type_id=$_POST['app_type_id'];
+			 $data['app_list'] = $this->Portfolio->get_portfolio_by_type($app_type_id);
+			 $this->load->view('/portfolios/showlist',$data);
+		}
+
+	}
 	
 		
 }

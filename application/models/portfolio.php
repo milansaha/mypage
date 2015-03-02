@@ -55,5 +55,12 @@ class Portfolio extends CI_Model {
 		return $department_info->result();
 	}*/
 
+	function get_portfolio_by_type($application_type_id)
+    {
+        $query=$this->db->get_where('portfolios', array('application_type_id' => $application_type_id));
+		
+        return $query->result(); 
+
+    }
 	
 }

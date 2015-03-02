@@ -30,3 +30,46 @@
 </table>
 
 <div align="center" id="paging"><?php echo $this->pagination->create_links(); ?></div>
+
+<div>
+	<h3>Testing ajax with CI</h3>
+	<form action="#" id="test_form" method="post" accept-charset="utf-8">
+		<input type="hidden" name="app_type_id" value="1">
+	</form>
+
+	<input type="button" name="txt-btn" value="click to show" id="txt-btn-show" class="submit_buttons positive">
+
+</div>
+<div id="show-app-list"></div>
+<script>
+        var base_url = "<?php echo base_url(); ?>";
+
+         jQuery(document).ready(function () {
+            $('#txt-btn-show').click(function(event){
+                     event.preventDefault();
+                     $.ajax({
+                          url : base_url+"index.php/portfolios/ajaxlist",
+                          data : $("#test_form").serialize(),
+                          //dataType : "json",
+                          type: 'POST',
+                          success: function (response) {
+                           	//alert(response);
+                            $("#show-app-list").html(response);
+                        }
+                          
+                     });
+                });
+
+        });
+
+	     /*$.ajax({
+	      url: base_url+"index.php?/ajax_demo/give_more_data",
+	      async: false,
+	      type: "POST",
+	      data: "type=article",
+	      dataType: "html",
+	      success: function(data) {
+	        $('#ajax-content-container').html(data);
+	      }
+	    })*/
+    </script>
